@@ -10,7 +10,7 @@ import re
 
 
 doc5=pd.read_csv('dataset/doc 5.csv')
-doc11=pd.read_csv('dataset/doc 11.csv')
+
 
 doc5['ADSL']= doc5['ADSL'].apply(lambda x: x.replace(".","")).astype(int)
 doc5['Cablemodem']=doc5['Cablemodem'].apply(lambda x: x.replace(".","")).astype(int)
