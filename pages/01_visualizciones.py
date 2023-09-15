@@ -10,6 +10,7 @@ import re
 
 
 doc5=pd.read_csv(r'dataset\doc 5.csv')
+doc11=pd.read_csv(r'dataset\doc 11.csv')
 
 doc5['ADSL']= doc5['ADSL'].apply(lambda x: x.replace(".","")).astype(int)
 doc5['Cablemodem']=doc5['Cablemodem'].apply(lambda x: x.replace(".","")).astype(int)
@@ -122,3 +123,27 @@ fig3 = px.choropleth_mapbox(df1, geojson=data,featureidkey='properties.nombre', 
 fig3.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 #fig3.show()
 st.plotly_chart(fig3, use_container_width=True)
+
+
+# other functions ----------------------------------------------------------------------
+
+g=pd.read_csv('dataset\df111.csv')
+st.markdown('-------------------------------------------------------------------')
+
+st.markdown('### Promedio total de accesos a internet por velocidad de bajada entre los años 2017 a 2022 en Provincias')
+
+lista_De_provincia= g['Provincia'].unique().tolist()   #['jujuy','la rioja','cordoba']
+regio=st.multiselect('***',lista_De_provincia,default=['Catamarca','Capital Federal'])
+
+df4=g[g['Provincia'].isin(regio)]
+
+#
+
+# evaluamos el promedio por provincia : en este caso elegimos las provincias 'Buenos Aires','Santiago Del Estero','Capital Federal'
+fig6 = px.line(df4, x = "Año",
+              y = "promedio total" ,
+              color ='Provincia',markers = True)
+#fig.show()
+st.plotly_chart(fig6, use_container_width=True)
+
+st.dataframe(g)
