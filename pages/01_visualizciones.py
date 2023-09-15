@@ -9,8 +9,8 @@ import json
 import re
 
 
-doc5=pd.read_csv(r'dataset\doc 5.csv')
-doc11=pd.read_csv(r'dataset\doc 11.csv')
+doc5=pd.read_csv('dataset/doc 5.csv')
+doc11=pd.read_csv('dataset/doc 11.csv')
 
 doc5['ADSL']= doc5['ADSL'].apply(lambda x: x.replace(".","")).astype(int)
 doc5['Cablemodem']=doc5['Cablemodem'].apply(lambda x: x.replace(".","")).astype(int)
@@ -91,7 +91,7 @@ st.markdown('-------------------------------------------------------------------
 
 st.markdown('Mapa Coropleth : Accesos a internet por Provincias')
 
-doc1=pd.read_csv(r'dataset\doc 1.csv')
+doc1=pd.read_csv('dataset/doc 1.csv')
 
 # convesrion tipo de dato en cada columna de doc1 
 doc1['Accesos por cada 100 hogares']= doc1['Accesos por cada 100 hogares'].str.replace(",", ".").astype(float)
@@ -107,7 +107,7 @@ regiones=st.multiselect('***',lista_De_regiones,default=['Jujuy','Corrientes'])
 
 df1=df[df['Provincia'].isin(regiones)]
 
-with open(r'C:\Users\LENOVO\Desktop\PI02\dataset\ProvinciasArgentina.geojson',encoding='utf-8') as f:
+with open('dataset/ProvinciasArgentina.geojson',encoding='utf-8') as f:
     data = json.load(f)
 
 # realizamos el mapa choropleth el numero de acceso en promedio  en cada 100 hogares por provincia
@@ -127,7 +127,7 @@ st.plotly_chart(fig3, use_container_width=True)
 
 # other functions ----------------------------------------------------------------------
 
-g=pd.read_csv('dataset\df111.csv')
+g=pd.read_csv('dataset/df111.csv')
 st.markdown('-------------------------------------------------------------------')
 
 st.markdown('### Promedio total de accesos a internet por velocidad de bajada entre los años 2017 a 2022 en Provincias')
